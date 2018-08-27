@@ -2,20 +2,117 @@ Steps to create working Graphana services.
 
 This setup will use InfluxDB with Grafana
 
-Get and install InfluxDB
+** Get and install InfluxDB
+------------------------------------------------------------------------------------
 InfluxDB is a time series database with sql like queries.
 https://www.influxdata.com/time-series-platform/influxdb/
 
 from https://portal.influxdata.com/downloads
 locate current branch or. ...
-wget https://dl.influxdata.com/influxdb/releases/influxdb-1.6.1.x86_64.rpm
-sudo yum localinstall influxdb-1.6.1.x86_64.rpm
-systemctl start influxdb
-systemctl enable influxdb
 
-if running 
-systemctl status influxdb
+-- install session cmds --
+    wget https://dl.influxdata.com/influxdb/releases/influxdb-1.6.1.x86_64.rpm
+    sudo yum localinstall influxdb-1.6.1.x86_64.rpm
+    systemctl start influxdb
+    systemctl enable influxdb
 
-you can edit setting for influxdb
-/etc/influxdb/influxdb.conf
+    systemctl status influxdb
+-- end session --
+
+to edit setting for influxdb
+CONFIG:  /etc/influxdb/influxdb.conf
+
+
+Configure database for Grafana
+-- session --
+    $ influx -precision rfc3339
+    
+    Connected to http://localhost:8086 version 1.6.1
+    InfluxDB shell version: 1.6.1
+    > create database grafana
+    > show databases
+    name: databases
+    name
+    ----
+    _internal
+    grafana
+    > use grafana
+    >
+    > settings
+    Setting           Value
+    --------          --------
+    Host              localhost:8086
+    Username
+    Database          grafana
+    RetentionPolicy
+    Pretty            false
+    Format            column
+    Write Consistency all
+    Chunked           true
+    Chunk Size        0
+    >
+    >exit
+    
+-- end session --
+
+** Get and install Grafana 
+------------------------------------------------------------------------------------
+Grafana is a data visualization layer to represent metrics.
+
+install information
+http://docs.grafana.org/installation/rpm/
+
+-- install session cmds --
+    dnf search grafana 
+    dnf install grafana.x86_64
+    systemctl start grafana-server
+    systemctl enable grafana-server
+
+    systemctl status grafana-server 
+
+-- end of session --
+
+To edit setting for grafana
+CONFIG:  /etc/grafana/grafana.ini
+
+INFO :  
+web console is:  http://<server>:3000/
+
+
+
+
+Now go to grafana web console and setup the InfluxDB datasource created earlier
+
+http://<server>:3000/  (admin admin) is default user pass
+
+Add the following datasource:
+
+datasource
+    Name:      grafana
+    Type:       InfluxDB
+
+HTTP
+    URL:        http://localhost:8086
+    Access:   Server (default)
+
+Auth:
+    just leave the default settings for now
+    
+Advanced HTTP Settings:
+    just leave the default
+    
+InfluxDB Details:
+    Database:   grafana
+    User:           blank
+    Pass:          blank
+    
+    
+---section footnote---
+Database Access
+
+Setting the database for this datasource does not deny access to other databases. The InfluxDB query syntax allows switching the database in the query. For example: SHOW MEASUREMENTS ON _internal or SELECT * FROM "_internal".."database" LIMIT 10
+
+To support data isolation and security, make sure appropriate permissions are configured in InfluxDB.
+
+
 
