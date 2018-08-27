@@ -1,0 +1,21 @@
+Steps to create working Graphana services.
+
+This setup will use InfluxDB with Grafana
+
+Get and install InfluxDB
+InfluxDB is a time series database with sql like queries.
+https://www.influxdata.com/time-series-platform/influxdb/
+
+from https://portal.influxdata.com/downloads
+locate current branch or. ...
+wget https://dl.influxdata.com/influxdb/releases/influxdb-1.6.1.x86_64.rpm
+sudo yum localinstall influxdb-1.6.1.x86_64.rpm
+systemctl start influxdb
+systemctl enable influxdb
+
+if running 
+systemctl status influxdb
+
+you can edit setting for influxdb
+/etc/influxdb/influxdb.conf
+
