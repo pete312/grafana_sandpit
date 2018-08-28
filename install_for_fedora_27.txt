@@ -115,4 +115,30 @@ Setting the database for this datasource does not deny access to other databases
 To support data isolation and security, make sure appropriate permissions are configured in InfluxDB.
 
 
+Adding data to InfluxDB with python
+-- session --
+$ virtualenv -p python3 ve
+$ . ./ve/bin/activate 
+
+(ve) $ # list the influxdb clients ...
+(ve) $ pip search influxdb 
+influxdb (5.2.0)                       - InfluxDB client
+django-influxdb (0.1.4)                - InfluxDB Django backend
+
+<snip>
+
+-- end session --
+
+
+To enter data into InfluxDB 
+
+from the virtualenv prompt
+$ pip install influxdb
+
+see script in this project called insert_influxdb_test_data.py
+
+
+
+
+
 
