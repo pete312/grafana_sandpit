@@ -91,7 +91,7 @@ if __name__ == '__main__':
     connection = InfluxDBClient(host='localhost', port=8086)
     connection.switch_database('grafana')
     now = datetime.now()
-    p = taxi_trips_parser('./data/Taxi_Trips.csv')
+    p = taxi_trips_parser('./data/Taxi_trips.csv')
     nbatch = 0
     batch = []
     for trip in p:
