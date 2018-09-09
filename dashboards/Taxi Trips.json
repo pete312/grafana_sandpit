@@ -61,39 +61,6 @@
   "links": [],
   "panels": [
     {
-      "alert": {
-        "conditions": [
-          {
-            "evaluator": {
-              "params": [
-                48
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "and"
-            },
-            "query": {
-              "params": [
-                "A",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "sum"
-            },
-            "type": "query"
-          }
-        ],
-        "executionErrorState": "alerting",
-        "frequency": "60s",
-        "handler": 1,
-        "name": "Graph alert",
-        "noDataState": "no_data",
-        "notifications": []
-      },
       "aliasColors": {
         "taxi_trips.fare": "#70dbed",
         "taxi_trips.tips": "#508642"
@@ -139,7 +106,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": true,
       "targets": [
         {
@@ -183,11 +150,20 @@
       ],
       "thresholds": [
         {
+          "colorMode": "warning",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 22,
+          "yaxis": "left"
+        },
+        {
           "colorMode": "critical",
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 48
+          "value": 57,
+          "yaxis": "left"
         }
       ],
       "timeFrom": null,
@@ -417,8 +393,8 @@
     "list": []
   },
   "time": {
-    "from": "2017-04-09T03:26:31.344Z",
-    "to": "2017-04-22T08:49:14.559Z"
+    "from": "2018-02-13T20:13:28.966Z",
+    "to": "2018-03-30T20:03:14.793Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -448,5 +424,5 @@
   "timezone": "",
   "title": "Taxi Trips",
   "uid": "4L8JM62iz",
-  "version": 18
+  "version": 21
 }
