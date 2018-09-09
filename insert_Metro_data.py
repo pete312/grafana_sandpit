@@ -40,6 +40,7 @@ def taxi_trips_parser(file):
             try:
                 yield translate_to_metric(data, indexer)
             except KeyError as err:
+                print("Key error", err)
                 print("line %s %s" % (lineno, data) )
     
 
