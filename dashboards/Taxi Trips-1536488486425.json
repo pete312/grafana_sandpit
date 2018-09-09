@@ -113,19 +113,25 @@
       "legend": {
         "alignAsTable": true,
         "avg": false,
-        "current": true,
+        "current": false,
         "hideEmpty": false,
         "hideZero": false,
-        "max": true,
-        "min": true,
+        "max": false,
+        "min": false,
         "rightSide": true,
         "show": true,
-        "total": true,
-        "values": true
+        "total": false,
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "title": "Link to dataset origin",
+          "type": "absolute",
+          "url": "https://data.cityofchicago.org/widgets/wrvz-psew"
+        }
+      ],
       "nullPointMode": "connected",
       "percentage": false,
       "pointradius": 5,
@@ -186,7 +192,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Graph",
+      "title": "Graph Trips and Fares Stacked",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -239,8 +245,8 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": 1,
-        "desc": false
+        "col": 3,
+        "desc": true
       },
       "styles": [
         {
@@ -251,15 +257,20 @@
         },
         {
           "alias": "",
-          "colorMode": null,
+          "colorMode": "row",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
           "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
+          "link": false,
+          "linkTargetBlank": true,
+          "pattern": "taxi_trips.fare",
+          "thresholds": [
+            "1",
+            "4"
+          ],
           "type": "number",
           "unit": "short"
         }
@@ -331,6 +342,7 @@
         "colorScale": "linear",
         "colorScheme": "interpolateSpectral",
         "exponent": 0.5,
+        "min": null,
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
@@ -376,12 +388,13 @@
         "show": true,
         "showHistogram": false
       },
+      "tooltipDecimals": null,
       "type": "heatmap",
       "xAxis": {
         "show": true
       },
-      "xBucketNumber": null,
-      "xBucketSize": null,
+      "xBucketNumber": 50,
+      "xBucketSize": "",
       "yAxis": {
         "decimals": null,
         "format": "short",
@@ -392,8 +405,8 @@
         "splitFactor": null
       },
       "yBucketBound": "auto",
-      "yBucketNumber": null,
-      "yBucketSize": null
+      "yBucketNumber": 3,
+      "yBucketSize": 3
     }
   ],
   "refresh": false,
@@ -404,8 +417,8 @@
     "list": []
   },
   "time": {
-    "from": "2017-04-04T05:00:00.000Z",
-    "to": "2017-05-05T05:00:00.000Z"
+    "from": "2017-04-09T03:26:31.344Z",
+    "to": "2017-04-22T08:49:14.559Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -435,5 +448,5 @@
   "timezone": "",
   "title": "Taxi Trips",
   "uid": "4L8JM62iz",
-  "version": 14
+  "version": 18
 }
